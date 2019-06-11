@@ -45,14 +45,16 @@ merge:
 
 trans: 
      
-     S = short (x<.85\*runningmean), R = regular (.85\*runningmean<x<1.15\*runningmean),                                               L = long (x>1.15\*runningmean) where x is rr interval in seconds
+     S = short (x<.85\*runningmean), R = regular (.85\*runningmean<x<1.15\*runningmean),      
+     L = long (x>1.15\*runningmean) where x is rr interval in seconds
         
      Columns = From, Rows = To
         
         
 samps: 
 
-     ID, start sample#, end sample#, length(beats), length(seconds), afib (t/f), proportions of                                        trans matrix(ss, sr, sl, rs, rr, rl ls lr, ll)
+     ID, start sample#, end sample#, length(beats), length(seconds), afib (t/f), proportions of    
+     trans matrix(ss, sr, sl, rs, rr, rl ls lr, ll)
 
 
 
