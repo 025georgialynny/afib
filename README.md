@@ -38,14 +38,22 @@ samps*.csv ==== csv of 45 second samples taken for each individual
 
                 found in /sampscurrent
 
-merge: RRint, endsample#, annotation, running mean, running seconds, transition(1 = S, 2 = R, 3 = L)
+merge: 
+    
+    RRint, endsample#, annotation, running mean, running seconds, transition(1 = S, 2 = R, 3 = L)
 
 
-trans: S = short (x<.85\*runningmean), R = regular (.85\*runningmean<x<1.15\*runningmean), L = long (x>1.15\*runningmean)
+trans: 
+     
+     S = short (x<.85\*runningmean), R = regular (.85\*runningmean<x<1.15\*runningmean), L = long (x>1.15\*runningmean)
         where x is rr interval in seconds
         
+     Columns = From, Rows = To
         
-samps: ID, start sample#, end sample#, length(beats), length(seconds), afib (t/f), proportions of trans matrix(ss, sr, sl, rs, rr, rl ls lr, ll)
+        
+samps: 
+
+          ID, start sample#, end sample#, length(beats), length(seconds), afib (t/f), proportions of trans matrix(ss, sr, sl, rs, rr, rl ls lr, ll)
 
 
 
