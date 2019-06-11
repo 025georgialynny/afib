@@ -11,6 +11,7 @@ for i in range(len(qrsreadin)):
     qrsnames.append(qrsreadin[i].rsplit("/csv/")[1])
     qrsnames[i] = qrsnames[i][:-4]
     qrsnewnames.append(qrsnames[i]+"Mat")
+    mergenam.append("merge"+atrnames[i][-5:])
     
 
 for i in range(len(qrsreadin)):
@@ -28,7 +29,7 @@ for i in range(len(qrsnames)):
         for k in range(3):
             globals()[qrsnewnames[i]][j][k] = float(globals()[qrsnewnames[i]][j][k])
             
-            
+          
             
             
 atrreadin = (glob.glob("/home/georgia/afib/files/csv/atr*.txt"))
@@ -40,8 +41,9 @@ for i in range(len(atrreadin)):
     atrnames.append(atrreadin[i].rsplit("/csv/")[1])
     atrnames[i] = atrnames[i][:-4]
     atrnewnames.append(atrnames[i]+"Mat")
-    mergenam.append("merge"+atrnames[i][-5:])
     
+
+
 
 for i in range(len(atrreadin)):
     globals()[atrnames[i]] = open(atrreadin[i], "r")  
@@ -69,7 +71,11 @@ for i in range(len(atrnames)):
         if(j!=0):
             globals()[atrnewnames[i]][j][0][0] = float( globals()[atrnewnames[i]][j][0][0])
             
+          
             
+qrsnewnamse.sort()
+atrnewnames.sort()
+mergnam.sort()            
 k = 1
 for i in range(len(qrsnewnames)):
     globals()[mergenam[i]] = []
