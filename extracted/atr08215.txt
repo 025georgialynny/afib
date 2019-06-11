@@ -1,0 +1,5 @@
+Elapsed time  Sample #  Type  Sub Chan  Num	Aux
+    0:00.632      158     +    0    0    0	(N
+ 1:58:18.832  1774708     +    0    0    0	(AFIB
+ 3:33:37.740  3204435     +    0    0    0	(AFL
+ 3:34:27.980  3216995     +    0    0    0	(AFIB

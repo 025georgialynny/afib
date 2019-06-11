@@ -1,0 +1,2 @@
+Elapsed time  Sample #  Type  Sub Chan  Num	Aux
+    0:00.696      174     +    0    0    0	(AFIB
