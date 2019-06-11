@@ -63,45 +63,36 @@ for(i in 1:length(files)){################running seconds for each entry
 ################## rr, samp, n, rmean, rsec
 
 #################################plotting
+
+par(mfrow = c(2, 1), mar = c(5,5, 1,1), family = "serif")
 rmeanplot = function(fullfile){
-  par(mfrow = c(2, 1), mar = c(5,5, 1,1))
+  par(mfrow = c(2, 1), mar = c(5,5, 1,1), family = "serif")
   colnames(fullfile) = c("rr", "samp", "afib", "rmean", "rsec")
   plot(fullfile[,5], fullfile[,4], type = "l", lwd = 0, col = "red4",
-       xlab = "Seconds", ylab = "Running Mean")
+       xlab = "Seconds", ylab = "Running Mean", cex.lab = 2, cex.axis = 1.5)
   fib = which(fullfile[,3] =="B")
   if(length(fib) >0){
     points(fullfile[fib, 5], rep(4, length(fib)), cex = .5, col = "darkolivegreen3", type = "h")}
   points(fullfile[,5], fullfile[,4], type = "l", lwd = .5, col = "red4")
   
   plot(fullfile[,5], fullfile[,1], type = "l", lwd = 0, col = "dodgerblue4",
-       xlab = "Seconds", ylab = "RR-Interval")
+       xlab = "Seconds", ylab = "RR-Interval", cex.lab = 1.75, cex.axis = 1.5)
   if(length(fib) >0){
     points(fullfile[fib, 5], rep(4, length(fib)), cex = .5, col = "darkolivegreen3", type = "h")}
   points(fullfile[,5], fullfile[,1], type = "l", lwd = .5, col = "dodgerblue4")
 }
-rmeanplot(merge04015.csv)  
-rmeanplot(merge04043.csv)
-rmeanplot(merge04048.csv)  
-rmeanplot(merge04126.csv)  
-rmeanplot(merge04746.csv) 
-rmeanplot(merge04908.csv)
-rmeanplot(merge04936.csv)
-rmeanplot(merge05091.csv)  
-rmeanplot(merge05121.csv)  
-rmeanplot(merge05261.csv)  
-rmeanplot(merge06426.csv)  
-rmeanplot(merge06453.csv)  
-rmeanplot(merge06995.csv)  
-rmeanplot(merge07162.csv)  
-rmeanplot(merge07859.csv)  
-rmeanplot(merge07879.csv)
-rmeanplot(merge07910.csv)
-rmeanplot(merge08215.csv)
-rmeanplot(merge08219.csv)
-rmeanplot(merge08378.csv)
-rmeanplot(merge08405.csv)
-rmeanplot(merge08434.csv)
-rmeanplot(merge08455.csv)
+
+path = "/home/georgia/afib/mergeplots/" ################change this path for your plots
+
+
+################3unmask these and change path to get plots
+#for(i in 3:length(files)){
+ # jpeg(paste(path, "plot", substr(files[i], 6, 10), ".jpeg", sep = ""), width = 1533, height = 792)
+  # 2. Create the plot
+  #rmeanplot(get(files[i]))
+  # 3. Close the file
+#  dev.off()
+#}
 
 
 ################## rr, samp, n, rmean, rsec
