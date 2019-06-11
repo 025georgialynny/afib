@@ -19,6 +19,10 @@ makesamples.R needs merge\*.cxv files found in /oldmerge
 
 merge.py needs \*.txt found in /extracted
 
+     atr*.txt is extracted annotations of heartbeat type 
+     
+     qrs*.txt is extracted RR-Intervals
+
 
 merge*.csv === new merged files with additional data
                
