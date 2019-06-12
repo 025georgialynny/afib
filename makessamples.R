@@ -82,7 +82,7 @@ rmeanplot = function(fullfile){
   points(fullfile[,5], fullfile[,1], type = "l", lwd = .5, col = "dodgerblue4")
 }
 
-path = "/home/georgia/afib/mergeplots/" ################change this path for your plots
+path = "/home/georgia/afib/mergeplots/" ################change this path for your plots               
 
 
 ################3unmask these and change path to get plots
@@ -101,9 +101,9 @@ classify= function(file, i = nrow(file)){################################add a c
   tran = NULL
   for(j in 1:i){
     if(file[j,1]>(1.15*file[j,4])){
-      tran = c(tran, 1) ######################                     1 = L
+      tran = c(tran, 3) ######################                     3 = L
     }else if(file[j,1]<(.85*file[j,4])){
-      tran = c(tran, 3) ####################                        3 = S
+      tran = c(tran, 1) ####################                        1 = S
     }else{
       tran = c(tran, 2)  ###################                        2 = R
     }
@@ -214,9 +214,9 @@ for( i in 3:length(files)){################################give meaningful col n
 path = "/home/georgia/afib/samplesout/"#########################33change path for yourself
 
 for(i in 3:length(files)){###############################################3write out all new data
-  write.csv(get(samps[i]), paste(path, samps[i], ".csv", sep = ""))
+  write.csv(get(samps[i]), paste(path, "samps/", samps[i], ".csv", sep = ""))
   
-  write.csv(get(trans[i]), paste(path, trans[i], ".csv", sep = ""))
+  write.csv(get(trans[i]), paste(path, "trans/",trans[i], ".csv", sep = ""))
   
-  write.csv(get(files[i]), paste(path, files[i], sep = ""))
+  write.csv(get(files[i]), paste( path,"merge/", files[i], sep = ""))
 }
