@@ -143,7 +143,7 @@ rowprop = function(mat){
   newmat = matrix(rep(0,9), ncol = 3)
   for(i in 1:3){
     for(j in 1:3){
-      newmat[j, i] = mat[j, i]/sum(mat[,i])
+      newmat[j, i] = mat[j, i]/sum(unlist(list(mat[,i])))
     }
   }
   newmat
@@ -195,5 +195,89 @@ for(i in 1:length(trans)){
 
 
 
+rowprop = function(mat){
+  newmat = matrix(rep(0,9), ncol = 3)
+  for(i in 1:3){
+    for(j in 1:3){
+      if(sum(unlist(mat[,i]))!=0){newmat[j, i] = unlist(mat[j, i])/sum(unlist(mat[,i]))}
+      else{mat[j,i]=0}
+    }
+  }
+  newmat
+}
+samptotrans = function(samp){
+  mat = matrix(rep(samp[4], 9)*samp[7:15], ncol = 3)
+  mat = rowprop(mat)
+  mat
+}
+
+avgasamp = function(samp){
+  afib = NULL; non = NULL;
+  for(i in 1:nrow(samp)){
+    ind = samptotrans(samp[i,])
+    if(samp[i,6]==TRUE){
+      if(is.null(afib)){
+        afib = ind
+      }
+      else{
+        afib = (afib*.75)+(ind*.25)
+      }
+    }
+    else{
+      if(is.null(non)){
+        non = ind
+      }
+      else{
+        non = (non*.75)+(non*.25)
+      }
+    }
+  }
+  if(dim(table(samp[,6]))!=2){
+    if(is.null(non)){
+      non = matrix(rep(0, 9), ncol = 3)
+    }
+    else{
+      afib = matrix(rep(0,9), ncol = 3)
+    }
+  }
+  list(afib, non)
+}
+
+avgtafib = NULL
+avgtnon = NULL
+for(i in 1:length(samps)){
+  avgtafib = c(avgtafib, paste("avgtafib", substr(samps[i], 6, 10), sep = ""))
+  avgtnon = c(avgtnon, paste("avgtnon", substr(samps[i], 6, 10), sep = ""))
+}
+
+for(i in 1:length(samps)){
+  a = avgasamp(get(samps[i]))
+  assign(avgtafib[i], a[[1]])
+  assign(avgtnon[i], a[[2]])
+}
 
 
+path = "/home/georgia/afib/samplesout/tdiagram/"
+
+
+
+for(i in 1:length(trans)){
+  print(i)
+  tr = get(avgtafib[i])
+  tr = matrix(tr, ncol = 3)
+  jpeg(filename = paste(path, avgtafib[i], ".jpeg", sep = ""), width = 900, height = 700)
+  st = c("S", "R", "L")
+  dimnames(tr) = list(st)
+  colnames(tr) = st
+  markdia(round(tr, 3))
+  dev.off()
+  tr = get(avgtnon[i])
+  print(tr)
+  tr = matrix(tr, ncol = 3)
+  jpeg(filename = paste(path, avgtnon[i], ".jpeg", sep = ""), width = 900, height = 700)
+  st = c("S", "R", "L")
+  dimnames(tr) = list(st)
+  colnames(tr) = st
+  markdia(round(tr, 3))
+  dev.off()
+}
