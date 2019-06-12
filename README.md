@@ -16,6 +16,8 @@ runme.sh needs all files found at database link
 
 makesamples.R needs merge\*.cxv files found in /oldmerge
 
+rmsamptrans.R needs files found in /mergecurrent and /sampscurrent
+
 
 merge.py needs \*.txt found in /extracted
 
@@ -37,6 +39,9 @@ trans*.csv ==== transition matrices for each full data file
 samps*.csv ==== csv of 45 second samples taken for each individual
 
                 found in /sampscurrent
+                    includes samps with mix afib/normal readings
+                found in /sampsnotrans
+                    includes only samples with all afib or all non-afib readings
 
 merge: 
     
