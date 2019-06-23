@@ -117,14 +117,14 @@ for(i in 3:length(files)){############classify each rr interval for each file
 }
 
 
-transmat = function(file, mat){###############creates transition matrix based on classify function additions above
-  for(i in 1:(nrow(file)-1)){
-    from = file[i,6]
-    to = file[i+1, 6]
-    mat[to, from] = mat[to, from] + 1
+  transmat = function(file, mat){###############creates transition matrix based on classify function additions above
+    for(i in 1:(nrow(file)-1)){
+      from = file[i,6]
+      to = file[i+1, 6]
+      mat[to, from] = mat[to, from] + 1
+    }
+    mat
   }
-  mat
-}
 
 
 trans = NULL
@@ -154,7 +154,7 @@ props = function(mat){#####################function to turn transition matrices 
 sampfib = function(file, i = nrow(file)){######################function determine if a sample group should be classified as afib or not
   afib = length(which(file[,3]=="B"))
   non = length(which(file[,3]!="B"))
-  afib>non
+ return(afib>non)
 }
 
 sub = function(file, i = nrow(file), id){#######################3function to split individual data frames into samples of 45 secons each
@@ -214,7 +214,7 @@ for( i in 3:length(files)){################################give meaningful col n
 path = "/home/georgia/afib/samplesout/"#########################33change path for yourself
 
 for(i in 3:length(files)){###############################################3write out all new data
-  write.csv(get(samps[i]), paste(path, "samps/", samps[i], ".csv", sep = ""))
+  write.csv(get(samps[i]), paste(path, "sampsall/", samps[i], ".csv", sep = ""))
   
   write.csv(get(trans[i]), paste(path, "trans/",trans[i], ".csv", sep = ""))
   
